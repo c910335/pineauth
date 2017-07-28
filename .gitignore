@@ -1,0 +1,11 @@
+/doc/
+/libs/
+/lib/
+/.crystal/
+/.shards/
+.env
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+pineauth
