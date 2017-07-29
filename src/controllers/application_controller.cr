@@ -3,13 +3,21 @@ class ApplicationController < Amber::Controller::Base
 
   @current_user : User?
 
+  macro if_user
+    if user = current_user
+      {{yield}}
+    else
+      ""
+    end
+  end
+
   private def root_url
     "/"
   end
 
   private def current_user
     @current_user ||= if current_user_id = session[:current_user_id]
-                        User.find_by :id, current_user_id.to_i64
+                        User.find current_user_id
                       end
   end
 

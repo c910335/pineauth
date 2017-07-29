@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController 
+class SessionController < ApplicationController
 
   def new
     render("new.slang")
@@ -6,10 +6,8 @@ class SessionsController < ApplicationController
 
   def create
     if user = User.authenticate(params["email"], params["password"])
-      if id = user.id
-        session[:current_user_id] = id.to_s
-        flash[:info] = "Signed in."
-      end
+      session[:current_user_id] = user.id
+      flash[:info] = "Signed in."
     else
       flash[:danger] = "Failed to sign in."
     end

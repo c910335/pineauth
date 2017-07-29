@@ -9,8 +9,8 @@ shards:
     version: 0.4.2
 
   granite_orm:
-    github: amber-crystal/granite-orm
-    commit: 01da77082ee679eafcdd4d494f2cf701ebc1961f
+    github: c910335/granite-orm
+    commit: 80a7b3634c8fdf42ebad6708baa4ff701b58f580
 
   kemalyst-validators:
     github: kemalyst/kemalyst-validators

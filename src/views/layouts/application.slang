@@ -12,13 +12,15 @@ html
 
   body
     div.masthead
-      div.container
+      div.container-fluid
         nav.nav
           == render_template "layouts/_nav.slang"
-    div.container
+    div.container-fluid
       div.row
       - flash.each do |key, value|
-        div class="alert alert-#{ key }"
+        div class="alert alert-#{ key } alert-dismissible" role="alert"
+          button.close type="button" data-dismiss="alert" aria-label="Close"
+            span aria-hidden="true" ×
           p = flash[key]
       div.row
         div.col-sm-12.main

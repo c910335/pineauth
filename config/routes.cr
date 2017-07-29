@@ -21,11 +21,11 @@ Amber::Server.instance.config do |app|
   end
 
   routes :web do
-    
     resources "/users", UserController
+    resources "/oauth/clients", OAuth::ClientController
     get "/", HomeController, :index
-    get "/sign_in", SessionsController, :new
-    post "/sign_in", SessionsController, :create
-    delete "/sign_out", SessionsController, :destroy
+    get "/sign_in", SessionController, :new
+    post "/sign_in", SessionController, :create
+    delete "/sign_out", SessionController, :destroy
   end
 end

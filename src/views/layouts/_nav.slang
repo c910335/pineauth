@@ -4,6 +4,9 @@ ul.nav.navbar-nav
   - if owner?
     - active = context.request.path == "/users" ? "active" : ""
     a class="nav-item #{active}" href="/users" Users
+  - if current_user
+    - active = context.request.path == "/oauth/clients" ? "active" : ""
+    a class="nav-item #{active}" href="/oauth/clients" Clients
 ul.nav.navbar-nav.navbar-right
   - if user = current_user
     li.dropdown
