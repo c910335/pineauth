@@ -3,7 +3,7 @@ class UserController < ApplicationController
   before_action do
     only [:edit, :update] do
       unless (user = authenticate_user!) && user.is_a?(User) && user.id == params["id"].to_i
-        redirect_to root_url
+        redirect_to root_path
       end
     end
 
@@ -47,7 +47,7 @@ class UserController < ApplicationController
       render("edit.slang")
     else
       flash["warning"] = "User with ID #{params["id"]} Not Found"
-      redirect_to root_url
+      redirect_to root_path
     end
   end
 
@@ -56,14 +56,14 @@ class UserController < ApplicationController
       old_password, user.password = user.password, params["password"]
       if old_password == params["old_password"] && params["password"] == params["confirm_password"] && user.valid? && user.save
         flash["success"] = "Updated User successfully."
-        redirect_to root_url
+        redirect_to root_path
       else
         flash["danger"] = "Could not update User!"
         render("edit.slang")
       end
     else
       flash["warning"] = "User with ID #{params["id"]} Not Found"
-      redirect_to root_url
+      redirect_to root_path
     end
   end
 

@@ -11,8 +11,12 @@ class ApplicationController < Amber::Controller::Base
     end
   end
 
-  private def root_url
+  macro root_path
     "/"
+  end
+
+  macro sign_in_path
+    "/sign_in"
   end
 
   private def current_user
@@ -27,19 +31,29 @@ class ApplicationController < Amber::Controller::Base
     end
   end
 
-  private def authenticate_user!
+  private def authenticate_user!(return_back : Bool = false)
     if user = current_user
       user
     else
-      redirect_to root_url
+      session[:return_to] = if return_back
+                              request.resource
+                            else
+                              root_path
+                            end
+      redirect_to sign_in_path
     end
+  end
+
+  private def authenticate_user_and_return_back!
+    authenticate_user! true
   end
   
   private def authenticate_owner!
-    if owner? && (user = current_user)
+    if (user = current_user) && owner?
       user
     else
-      redirect_to root_url
+      session[:return_to] = root_path
+      redirect_to sign_in_path
     end
   end
 end
