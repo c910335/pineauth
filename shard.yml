@@ -18,8 +18,8 @@ dependencies:
     branch: master
 
   granite_orm:
-    github: c910335/granite-orm
-    branch: callbacks
+    github: amber-crystal/granite-orm
+    branch: master
 
   pg:
     github: will/crystal-pg

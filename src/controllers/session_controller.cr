@@ -1,5 +1,4 @@
 class SessionController < ApplicationController
-
   def new
     render("new.slang")
   end

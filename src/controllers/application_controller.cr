@@ -47,7 +47,7 @@ class ApplicationController < Amber::Controller::Base
   private def authenticate_user_and_return_back!
     authenticate_user! true
   end
-  
+
   private def authenticate_owner!
     if (user = current_user) && owner?
       user
@@ -57,4 +57,3 @@ class ApplicationController < Amber::Controller::Base
     end
   end
 end
-

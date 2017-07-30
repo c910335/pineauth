@@ -1,5 +1,4 @@
-class UserController < ApplicationController 
-
+class UserController < ApplicationController
   before_action do
     only [:edit, :update] do
       unless (user = authenticate_user!) && user.is_a?(User) && user.id == params["id"].to_i
@@ -7,7 +6,7 @@ class UserController < ApplicationController
       end
     end
 
-    only [:index, :show, :new, :create, :destroy] { authenticate_owner! } 
+    only [:index, :show, :new, :create, :destroy] { authenticate_owner! }
   end
 
   def index

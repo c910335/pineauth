@@ -1,7 +1,7 @@
 require "granite_orm/adapter/pg"
 require "crypto/bcrypt/password"
 
-class User < Granite::ORM 
+class User < Granite::ORM
   adapter pg
 
   # id : Int64 primary key is created for you

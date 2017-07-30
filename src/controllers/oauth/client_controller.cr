@@ -1,6 +1,5 @@
 module OAuth
   class ClientController < ApplicationController
-
     before_action do
       all { authenticate_user! }
     end
