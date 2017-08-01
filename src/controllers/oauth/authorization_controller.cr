@@ -10,7 +10,8 @@ module OAuth
       if client = Client.find_by :uid, params["client_id"]?
         if (redirect_uri = params["redirect_uri"]?) && redirect_uri != client.redirect_uri
           error :not_found
-        elsif redirect_uri = client.redirect_uri
+        else
+          redirect_uri = client.redirect_uri.not_nil!
           if (response_type = params["response_type"]?) && ["code", "token"].includes? response_type
             if (scopes_string = params["scope"]?) && (scopes = scopes_string.split) && (scopes - client.split_scopes).empty?
               state = params["state"]?
@@ -21,8 +22,6 @@ module OAuth
           else
             error :unsupported_response_type
           end
-        else
-          error :server_error
         end
       else
         error :not_found
