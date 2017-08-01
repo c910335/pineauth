@@ -30,8 +30,10 @@ module OAuth
     end
 
     def new
-      if_client do
-        render("src/views/oauth/authorization/new.slang")
+      if_user do
+        if_client do
+          render("src/views/oauth/authorization/new.slang")
+        end
       end
     end
 

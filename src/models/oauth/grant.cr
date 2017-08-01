@@ -14,6 +14,14 @@ module OAuth
     field client_id : Int64
     timestamps
 
+    def split_scopes
+      if scopes = @scopes
+        scopes.split
+      else
+        [] of String
+      end
+    end
+
     private def generate
       @code = SecureRandom.urlsafe_base64(32)
       @revoked_at = Time.now + 1.minute
