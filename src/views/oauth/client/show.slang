@@ -7,3 +7,4 @@ p
   a.btn.btn-link href="/oauth/clients" back
   a.btn.btn-success href="/oauth/clients/#{ client.id }/edit" edit
   a.btn.btn-danger href="/oauth/clients/#{ client.id }?_method=delete" onclick="return confirm('Are you sure?');" delete
+  a.btn.btn-info href="/oauth/authorize?response_type=code&scope=#{ client.scopes }&client_id=#{ client.uid }&redirect_uri=#{ client.redirect_uri }" authorize
