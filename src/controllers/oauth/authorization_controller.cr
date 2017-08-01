@@ -30,32 +30,28 @@ module OAuth
     end
 
     def new
-      if_user do
-        if_client do
-          render("src/views/oauth/authorization/new.slang")
-        end
+      if_client do
+        render("src/views/oauth/authorization/new.slang")
       end
     end
 
     def create
-      if_user do
-        if_client do
-          case response_type
-          when "code"
-            grant = Grant.new(scopes: scopes_string)
-            grant.client_id = client.id
-            grant.user_id = user.id
+      if_client do
+        case response_type
+        when "code"
+          grant = Grant.new(scopes: scopes_string)
+          grant.client_id = client.id
+          grant.user_id = current_user!.id
 
-            if grant.valid? && grant.save
-              redirect_to redirect_uri, 302, query_params
-            else
-              error :server_error
-            end
-          when "token"
-            "" # Todo
+          if grant.valid? && grant.save
+            redirect_to redirect_uri, 302, query_params
           else
             error :server_error
           end
+        when "token"
+          "" # Todo
+        else
+          error :server_error
         end
       end
     end
