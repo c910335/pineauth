@@ -10,6 +10,7 @@ module OAuth
     field code : String
     field revoked_at : Time
     field scopes : String
+    field expires_in : Int64
     field user_id : Int64
     field client_id : Int64
     timestamps
@@ -24,7 +25,7 @@ module OAuth
 
     private def generate
       @code = SecureRandom.urlsafe_base64(32)
-      @revoked_at = Time.now + 1.minute
+      @expires_int = 60
     end
   end
 end

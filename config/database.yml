@@ -1,2 +1,2 @@
 pg:
-  database: postgres://pineauth:@localhost:5432/pineauth_development
+  database: postgres://pineauth:@localhost:5432/pineauth

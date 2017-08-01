@@ -3,6 +3,7 @@ CREATE TABLE oauth_grants (
   id BIGSERIAL PRIMARY KEY,
   code VARCHAR,
   scopes VARCHAR,
+  expires_in BIGINT,
   user_id BIGINT,
   client_id BIGINT,
   revoked_at TIMESTAMP,
