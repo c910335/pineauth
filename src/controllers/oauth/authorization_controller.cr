@@ -16,7 +16,7 @@ module OAuth
     macro if_client
       if @client = Client.find_by :uid, params["client_id"]?
         if (@redirect_uri = params["redirect_uri"]?) && redirect_uri != client.redirect_uri
-          error :not_found
+          error :invalid_request
         else
           @redirect_uri = client.redirect_uri.not_nil!
           if (@response_type = params["response_type"]?) && ["code", "token"].includes? response_type
@@ -31,7 +31,7 @@ module OAuth
           end
         end
       else
-        error :not_found
+        error :invalid_request
       end
     end
 

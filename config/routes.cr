@@ -23,10 +23,10 @@ Amber::Server.instance.config do |app|
 
   routes :web do
     resources "/users", UserController
-
     resources "/oauth/clients", OAuth::ClientController
     get "/oauth/authorize", OAuth::AuthorizationController, :new
     post "/oauth/authorize", OAuth::AuthorizationController, :create
+    post "/oauth/token", OAuth::TokenController, :create
 
     get "/", HomeController, :index
     get "/sign_in", SessionController, :new

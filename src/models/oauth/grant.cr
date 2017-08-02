@@ -4,13 +4,13 @@ module OAuth
   class Grant < Granite::ORM
     adapter pg
 
-    before_save generate
+    before_create generate
 
     # id : Int64 primary key is created for you
     field code : String
     field revoked_at : Time
     field scopes : String
-    field expires_in : Int64
+    field expires_in : Int32
     field user_id : Int64
     field client_id : Int64
     timestamps
@@ -23,9 +23,25 @@ module OAuth
       end
     end
 
+    def authorize(client : Client)
+      if revoked_at
+        false
+      elsif created_at.not_nil! + expires_in.not_nil!.seconds < Time.now
+        revoke
+        false
+      else
+        client_id == client.id
+      end
+    end
+
     private def generate
       @code = SecureRandom.urlsafe_base64(32)
-      @expires_int = 60
+      @expires_in = 3600 # long time for test
+    end
+
+    private def revoke
+      @revoked_at = Time.now
+      save
     end
   end
 end

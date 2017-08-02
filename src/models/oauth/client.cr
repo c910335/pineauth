@@ -27,5 +27,11 @@ module OAuth
       @uid = SecureRandom.urlsafe_base64(32)
       @secret = SecureRandom.urlsafe_base64(32)
     end
+
+    def self.authenticate(uid, secret)
+      if (client = find_by :uid, uid) && client.secret == secret
+        client
+      end
+    end
   end
 end
