@@ -11,7 +11,7 @@ license: MIT
 dependencies:
   amber:
     github: amber-crystal/amber 
-    version: ~> 0.1.5
+    version: ~> 0.1.6
 
   quartz-mailer:
     github: amber-crystal/quartz-mailer

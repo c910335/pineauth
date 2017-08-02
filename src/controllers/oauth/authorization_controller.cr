@@ -6,15 +6,22 @@ module OAuth
       all { authenticate_user_and_return_back! }
     end
 
+    property! client : Client
+    property! redirect_uri : String
+    property! response_type : String
+    property! scopes_string : String
+    property! scopes : Array(String)
+    property! state : String
+
     macro if_client
-      if client = Client.find_by :uid, params["client_id"]?
-        if (redirect_uri = params["redirect_uri"]?) && redirect_uri != client.redirect_uri
+      if @client = Client.find_by :uid, params["client_id"]?
+        if (@redirect_uri = params["redirect_uri"]?) && redirect_uri != client.redirect_uri
           error :not_found
         else
-          redirect_uri = client.redirect_uri.not_nil!
-          if (response_type = params["response_type"]?) && ["code", "token"].includes? response_type
-            if (scopes_string = params["scope"]?) && (scopes = scopes_string.split) && (scopes - client.split_scopes).empty?
-              state = params["state"]?
+          @redirect_uri = client.redirect_uri.not_nil!
+          if (@response_type = params["response_type"]?) && ["code", "token"].includes? response_type
+            if (@scopes_string = params["scope"]?) && (@scopes = scopes_string.split) && (scopes - client.split_scopes).empty?
+              @state = params["state"]?
               {{yield}}
             else
               error :invalid_scope
@@ -47,10 +54,10 @@ module OAuth
       end
     end
 
-    macro respond_code
+    def respond_code
       grant = Grant.new(scopes: scopes_string)
       grant.client_id = client.id
-      grant.user_id = current_user!.id
+      grant.user_id = current_user.id
 
       if grant.valid? && grant.save
         redirect_to redirect_uri, 302, query_params
@@ -59,7 +66,7 @@ module OAuth
       end
     end
 
-    macro respond_token
+    def respond_token
       "" # Todo
     end
 
@@ -76,7 +83,7 @@ module OAuth
       if code = grant.code
         qp["code"] = code
       end
-      if state
+      if state?
         qp["state"] = state
       end
       qp

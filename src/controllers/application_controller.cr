@@ -11,25 +11,23 @@ class ApplicationController < Amber::Controller::Base
     "/sign_in"
   end
 
-  private def current_user
+  private def current_user?
     @current_user ||= if current_user_id = session[:current_user_id]
                         User.find current_user_id
                       end
   end
 
-  private def current_user!
-    current_user.not_nil!
+  private def current_user
+    current_user?.not_nil!
   end
 
   private def owner?
-    if user = current_user
-      user.owner
-    end
+    current_user? && current_user.owner
   end
 
   private def authenticate_user!(return_back : Bool = false)
-    if user = current_user
-      user
+    if current_user?
+      current_user
     else
       session[:return_to] = if return_back
                               request.resource
@@ -37,6 +35,7 @@ class ApplicationController < Amber::Controller::Base
                               root_path
                             end
       redirect_to sign_in_path
+      nil
     end
   end
 
@@ -45,11 +44,12 @@ class ApplicationController < Amber::Controller::Base
   end
 
   private def authenticate_owner!
-    if (user = current_user) && owner?
-      user
+    if owner?
+      current_user
     else
       session[:return_to] = root_path
       redirect_to sign_in_path
+      nil
     end
   end
 end

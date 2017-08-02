@@ -2,7 +2,7 @@ version: 1.0
 shards:
   amber:
     github: amber-crystal/amber
-    version: 0.1.5
+    version: 0.1.6
 
   db:
     github: crystal-lang/crystal-db
@@ -10,7 +10,7 @@ shards:
 
   granite_orm:
     github: amber-crystal/granite-orm
-    commit: 6dc5f622a7bb8cf31f8e2cf55c126a480b0f0d5d
+    commit: c49ff76e5d25cbb8217d57b27469f5b54ad7152e
 
   kemalyst-validators:
     github: kemalyst/kemalyst-validators

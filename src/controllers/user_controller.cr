@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   before_action do
     only [:edit, :update] do
-      unless (user = authenticate_user!) && user.is_a?(User) && user.id == params["id"].to_i
+      unless authenticate_user! && current_user.id == params["id"].to_i
         redirect_to root_path
       end
     end

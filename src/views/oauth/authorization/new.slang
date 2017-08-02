@@ -16,7 +16,7 @@ div.panel.panel-info
           == csrf_tag
           input type="hidden" name="client_id" value="#{client.uid}"
           input type="hidden" name="redirect_uri" value="#{redirect_uri}"
-          - if state
+          - if state?
             input type="hidden" name="state" value="#{state}"
           input type="hidden" name="response_type" value="#{response_type}"
           input type="hidden" name="scope" value="#{scopes_string}"
@@ -27,7 +27,7 @@ div.panel.panel-info
           == csrf_tag
           input type="hidden" name="client_id" value="#{client.uid}"
           input type="hidden" name="redirect_uri" value="#{redirect_uri}"
-          - if state
+          - if state?
             input type="hidden" name="state" value="#{state}"
           input type="hidden" name="response_type" value="#{response_type}"
           input type="hidden" name="scope" value="#{scopes_string}"
