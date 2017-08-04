@@ -34,14 +34,14 @@ module OAuth
       end
     end
 
-    private def generate
-      @code = SecureRandom.urlsafe_base64(32)
-      @expires_in = 3600 # long time for test
-    end
-
-    private def revoke
+    def revoke
       @revoked_at = Time.now
       save
+    end
+
+    private def generate
+      @code = SecureRandom.urlsafe_base64(32)
+      @expires_in = 60
     end
   end
 end

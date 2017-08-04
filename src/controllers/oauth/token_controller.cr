@@ -33,6 +33,7 @@ module OAuth
       token.client_id = grant.client_id
 
       if token.valid? && token.save
+        grant.revoke
         token.to_json
       else
         error :server_error
