@@ -32,6 +32,11 @@ module OAuth
       end
     end
 
+    def destroy
+      response.status_code = 501
+      "Not Implemented"
+    end
+
     def respond_code
       @grant = Grant.new(scopes: scopes_string)
       grant.client_id = client.id
@@ -45,7 +50,8 @@ module OAuth
     end
 
     def respond_token
-      "" # Todo
+      response.status_code = 501
+      "Not Implemented"
     end
 
     private def query_params

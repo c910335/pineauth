@@ -41,7 +41,8 @@ module OAuth
     end
 
     private def refresh_and_respond_token
-      "" # Todo
+      response.status_code = 501
+      "Not Implemented"
     end
 
     private def set_properties

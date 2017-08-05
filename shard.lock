@@ -2,7 +2,7 @@ version: 1.0
 shards:
   amber:
     github: amber-crystal/amber
-    version: 0.1.6
+    version: 0.1.7
 
   db:
     github: crystal-lang/crystal-db
@@ -10,7 +10,7 @@ shards:
 
   granite_orm:
     github: amber-crystal/granite-orm
-    commit: c49ff76e5d25cbb8217d57b27469f5b54ad7152e
+    version: 0.6.4
 
   kemalyst-validators:
     github: kemalyst/kemalyst-validators
@@ -26,7 +26,7 @@ shards:
 
   quartz-mailer:
     github: amber-crystal/quartz-mailer
-    commit: 203c6ac78e670a6d86eb33cb4ee4220b5fa5eb4d
+    version: 0.1.0
 
   radix:
     github: luislavena/radix

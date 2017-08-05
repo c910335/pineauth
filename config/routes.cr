@@ -26,6 +26,7 @@ Amber::Server.instance.config do |app|
     resources "/oauth/clients", OAuth::ClientController
     get "/oauth/authorize", OAuth::AuthorizationController, :new
     post "/oauth/authorize", OAuth::AuthorizationController, :create
+    delete "/oauth/authorize", OAuth::AuthorizationController, :destroy
     post "/oauth/token", OAuth::TokenController, :create
 
     get "/", HomeController, :index
