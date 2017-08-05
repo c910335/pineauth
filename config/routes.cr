@@ -5,8 +5,11 @@ Amber::Server.instance.config do |app|
     plug Amber::Pipe::Logger.new
     plug Amber::Pipe::Session.new
     plug Amber::Pipe::Flash.new
-    # Temporarily disable for TokenController
-    # plug Amber::Pipe::CSRF.new
+    plug Amber::Pipe::CSRF.new
+  end
+
+  pipeline :api do
+    plug Amber::Pipe::Logger.new
   end
 
   # All static content will run these transformations
@@ -27,11 +30,14 @@ Amber::Server.instance.config do |app|
     get "/oauth/authorize", OAuth::AuthorizationController, :new
     post "/oauth/authorize", OAuth::AuthorizationController, :create
     delete "/oauth/authorize", OAuth::AuthorizationController, :destroy
-    post "/oauth/token", OAuth::TokenController, :create
 
     get "/", HomeController, :index
     get "/sign_in", SessionController, :new
     post "/sign_in", SessionController, :create
     delete "/sign_out", SessionController, :destroy
+  end
+
+  routes :api do
+    post "/oauth/token", OAuth::TokenController, :create
   end
 end
