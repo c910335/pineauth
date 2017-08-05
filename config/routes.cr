@@ -39,5 +39,6 @@ Amber::Server.instance.config do |app|
 
   routes :api do
     post "/oauth/token", OAuth::TokenController, :create
+    get "/oauth/token/info", OAuth::TokenInfoController, :show
   end
 end

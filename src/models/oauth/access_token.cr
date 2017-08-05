@@ -17,6 +17,21 @@ module OAuth
     field revoked_at : Time
     timestamps
 
+    property! user : User
+
+    def accessible?
+      if revoked_at
+        false
+      elsif created_at.not_nil! + expires_in.not_nil!.seconds < Time.now
+        revoke
+        false
+      elsif @user = User.find user_id
+        true
+      else
+        false
+      end
+    end
+
     def to_json(json : JSON::Builder)
       hash = {
         :access_token => token,
@@ -26,6 +41,35 @@ module OAuth
       }
       hash[:refresh_token] = refresh_token if refresh_token
       hash.to_json(json)
+    end
+
+    def to_info_json
+      pp expires_in
+      pp Time.now
+      pp created_at
+      pp (Time.now - created_at.not_nil!)
+      pp (Time.now - created_at.not_nil!).total_seconds
+      pp expires_in.not_nil! - (Time.now - created_at.not_nil!).total_seconds
+      {
+        user: {
+          id:    user.id,
+          email: user.email,
+        },
+        scopes:     split_scopes,
+        expires_in: expires_in.not_nil! - (Time.now - created_at.not_nil!).total_seconds,
+        client:     {
+          id: client_id,
+        },
+        created_at: created_at.not_nil!,
+      }.to_json
+    end
+
+    def split_scopes
+      if scopes = @scopes
+        scopes.split
+      else
+        [] of String
+      end
     end
 
     private def generate_tokens

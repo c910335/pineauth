@@ -1,5 +1,5 @@
 module OAuth
-  class TokenController < ApplicationController
+  class TokenController < BaseController
     before_action do
       all do
         response.content_type = "application/json"
@@ -10,7 +10,6 @@ module OAuth
     property! grant : Grant
     property! client : Client
     property! grant_type : String
-    property! error : String
     getter basic_auth_user : String?
     getter basic_auth_pass : String?
 
@@ -50,22 +49,6 @@ module OAuth
       return error :unsupported_grant_type unless (@grant_type = params["grant_type"]?) && ["authorization_code", "refresh_token"].includes? grant_type
       return error :invalid_grant unless (@grant = Grant.find_by :code, params["code"]?) && grant.authorize client
       return error :invalid_request if (redirect_uri = params["redirect_uri"]?) && redirect_uri != client.redirect_uri
-    end
-
-    private def set_basic_authentication
-      if (authorization = request.headers["Authorization"]?) &&
-         (basic_token = authorization[/Basic (.*)$/, 1]?) &&
-         (basic_string = Base64.decode_string(basic_token))
-        @basic_auth_user, @basic_auth_pass = basic_string.split(":")
-        @basic_auth_user && @basic_auth_pass && true
-      end
-    end
-
-    private def error(type : Symbol)
-      @error = {
-        error:             type.to_s,
-        error_description: "Something went wrong.",
-      }.to_json
     end
   end
 end
