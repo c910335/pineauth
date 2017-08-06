@@ -27,6 +27,7 @@ Amber::Server.instance.config do |app|
   routes :web do
     resources "/users", UserController
     resources "/oauth/clients", OAuth::ClientController
+    resources "/oauth/authorized_clients", OAuth::AuthorizedClientController, only: [:index, :show, :destroy]
     get "/oauth/authorize", OAuth::AuthorizationController, :new
     post "/oauth/authorize", OAuth::AuthorizationController, :create
     delete "/oauth/authorize", OAuth::AuthorizationController, :destroy

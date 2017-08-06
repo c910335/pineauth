@@ -72,14 +72,16 @@ module OAuth
       end
     end
 
+    def revoke
+      unless @revoked_at
+        @revoked_at = Time.now
+        save
+      end
+    end
+
     private def generate_tokens
       @token = SecureRandom.urlsafe_base64(32)
       @expires_in = 7200
-    end
-
-    private def revoke
-      @revoked_at = Time.now
-      save
     end
   end
 end

@@ -35,8 +35,10 @@ module OAuth
     end
 
     def revoke
-      @revoked_at = Time.now
-      save
+      unless @revoked_at
+        @revoked_at = Time.now
+        save
+      end
     end
 
     private def generate
