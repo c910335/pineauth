@@ -1,6 +1,6 @@
 # pineauth
 
-OAuth 2 Provider in Amber
+OAuth 2 Provider built with Amber
 
 ## Installation
 

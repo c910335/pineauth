@@ -7,13 +7,13 @@ def create_subject
   subject
 end
 
-describe AuthorizedApplicationController do
+describe OAuth::AuthorizedApplicationController do
   Spec.before_each do
     OAuth::Client.clear
   end
 
   describe "index" do
-    it "renders all the authorized applications" do
+    pending "renders all the authorized applications" do
       subject = create_subject
       get "/oauth/authorized_applications"
       response.body.should contain "test"
@@ -21,7 +21,7 @@ describe AuthorizedApplicationController do
   end
 
   describe "show" do
-    it "renders a single authorized application" do
+    pending "renders a single authorized application" do
       subject = create_subject
       get "/oauth/authorized_applications/#{subject.id}"
       response.body.should contain "test"
@@ -29,7 +29,7 @@ describe AuthorizedApplicationController do
   end
 
   describe "delete" do
-    it "deletes a authorized application" do
+    pending "deletes a authorized application" do
       subject = create_subject
       delete "/oauth/authorized_applications/#{subject.id}"
       result = OAuth::Client.find subject.id

@@ -4,6 +4,10 @@ shards:
     github: amber-crystal/amber
     version: 0.1.7
 
+  amber_spec:
+    github: amber-crystal/amber-spec
+    version: 0.1.0
+
   db:
     github: crystal-lang/crystal-db
     version: 0.4.2

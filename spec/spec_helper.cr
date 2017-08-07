@@ -1,3 +1,7 @@
 require "spec"
 require "amber"
+require "../src/helpers/**"
+require "../src/controllers/**"
+require "../src/mailers/**"
+require "../src/models/**"
 require "../config/*"

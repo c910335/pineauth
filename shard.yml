@@ -12,6 +12,9 @@ dependencies:
   amber:
     github: amber-crystal/amber 
 
+  amber_spec:
+    github: amber-crystal/amber-spec
+
   quartz-mailer:
     github: amber-crystal/quartz-mailer
 
