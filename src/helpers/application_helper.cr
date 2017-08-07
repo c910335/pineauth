@@ -1,4 +1,8 @@
+require "./error_helper"
+
 module ApplicationHelper
+  include ErrorHelper
+
   @current_user : User?
 
   macro root_path
@@ -23,17 +27,21 @@ module ApplicationHelper
     current_user? && current_user.owner
   end
 
+  private def redirect_to_sign_in(return_back : Bool = false)
+    session[:return_to] = if return_back
+                            request.resource
+                          else
+                            root_path
+                          end
+    error redirect_to sign_in_path
+    nil
+  end
+
   private def authenticate_user!(return_back : Bool = false)
     if current_user?
       current_user
     else
-      session[:return_to] = if return_back
-                              request.resource
-                            else
-                              root_path
-                            end
-      error redirect_to sign_in_path
-      nil
+      redirect_to_sign_in return_back
     end
   end
 
@@ -45,9 +53,7 @@ module ApplicationHelper
     if owner?
       current_user
     else
-      session[:return_to] = root_path
-      error redirect_to sign_in_path
-      nil
+      redirect_to_sign_in
     end
   end
 end
