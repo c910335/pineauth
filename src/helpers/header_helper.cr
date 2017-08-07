@@ -1,7 +1,5 @@
 module HeaderHelper
-  property! token : OAuth::AccessToken
-
-  def set_bearer_authentication
+  private def set_bearer_authentication
     (authorization = request.headers["Authorization"]?) &&
       (token_string = authorization[/Bearer (.*)$/, 1]?) &&
       (@token = OAuth::AccessToken.find_by :token, token_string) &&

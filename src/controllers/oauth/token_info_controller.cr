@@ -7,6 +7,8 @@ module OAuth
       end
     end
 
+    property! token : OAuth::AccessToken
+
     def show
       if token? && token.accessible?
         token.to_info_json
