@@ -3,7 +3,7 @@ CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR,
   encrypted_password VARCHAR,
-  owner BOOL,
+  level BIGINT,
   created_at TIMESTAMP,
   updated_at TIMESTAMP
 );

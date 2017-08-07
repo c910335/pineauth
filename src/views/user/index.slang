@@ -8,13 +8,13 @@ div.table-responsive
     thead
       tr
         th Email
-        th Owner
+        th Level
         th Actions
     tbody
     - users.each do |user|
       tr
         td = user.email
-        td = user.owner
+        td = user.level_name
         td
           span
             a.btn.btn-primary.btn-xs href="/users/#{ user.id }" read

@@ -6,6 +6,7 @@ h1 Edit Client
     li = error
 
 form action="/oauth/clients/#{ client.id.to_s }" method="post"
+  == csrf_tag
   input type="hidden" name="_method" value="patch"
   div.form-group
     label for="uid" Id

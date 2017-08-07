@@ -1,6 +1,6 @@
 p = user.email
 p = user.password
-p = user.owner
+p = user.level_name
 p
   a.btn.btn-link href="/users" back
   a.btn.btn-success href="/users/#{ user.id }/edit" edit

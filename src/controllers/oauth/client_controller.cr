@@ -1,7 +1,7 @@
 module OAuth
   class ClientController < ApplicationController
     before_action do
-      all { authenticate_user! }
+      all { authenticate_developer! }
     end
 
     def index

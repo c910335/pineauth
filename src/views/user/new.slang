@@ -18,11 +18,10 @@ form action="/users" method="post"
     input#confirm-password.form-control type="password" name="confirm_password" placeholder="Confirm Password"
   div.form-group
     div.checkbox
-      label
-        input type="hidden" name="published" value="false"
-        - if user.owner
-          input type="checkbox" name="owner" value="true" checked="true" Owner
-        - else
-          input type="checkbox" name="owner" value="true" Owner
+      label for="level" Level
+      select#level.form-control name="level"
+        option value="0" User
+        option value="1" Developer
+        option value="2" Owner
   button.btn.btn-primary type="submit" Submit
   a.btn href="/users" back

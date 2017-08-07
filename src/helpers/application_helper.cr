@@ -23,10 +23,6 @@ module ApplicationHelper
     current_user?.not_nil!
   end
 
-  private def owner?
-    current_user? && current_user.owner
-  end
-
   private def redirect_to_sign_in(return_back : Bool = false)
     session[:return_to] = if return_back
                             request.resource
@@ -37,23 +33,21 @@ module ApplicationHelper
     nil
   end
 
-  private def authenticate_user!(return_back : Bool = false)
-    if current_user?
-      current_user
-    else
-      redirect_to_sign_in return_back
+  {% for name in %w{user developer owner} %}
+    private def {{name.id}}?
+      current_user? && current_user.{{name.id}}?
     end
-  end
 
-  private def authenticate_user_and_return_back!
-    authenticate_user! true
-  end
-
-  private def authenticate_owner!
-    if owner?
-      current_user
-    else
-      redirect_to_sign_in
+    private def authenticate_{{name.id}}!(return_back : Bool = false)
+      if {{name.id}}?
+        current_user
+      else
+        redirect_to_sign_in return_back
+      end
     end
-  end
+
+    private def authenticate_{{name.id}}_and_return_back!
+      authenticate_{{name.id}}! true
+    end
+  {% end %}
 end

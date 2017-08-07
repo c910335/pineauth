@@ -33,7 +33,7 @@ class UserController < ApplicationController
 
   def create
     return error if error?
-    user = User.new(params.to_h.select(["email", "owner"]))
+    user = User.new(params.to_h.select(["email", "level"]))
     user.password = params["password"]
 
     if params["password"] == params["confirm_password"] && user.valid? && user.save

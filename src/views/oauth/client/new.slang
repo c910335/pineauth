@@ -6,6 +6,7 @@ h1 New Client
     li = error
 
 form action="/oauth/clients" method="post"
+  == csrf_tag
   div.form-group
     label for="name" Name
     input#name.form-control type="text" name="name" placeholder="Name" value="#{ client.name }"
