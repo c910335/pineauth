@@ -44,12 +44,6 @@ module OAuth
     end
 
     def to_info_json
-      pp expires_in
-      pp Time.now
-      pp created_at
-      pp (Time.now - created_at.not_nil!)
-      pp (Time.now - created_at.not_nil!).total_seconds
-      pp expires_in.not_nil! - (Time.now - created_at.not_nil!).total_seconds
       {
         user: {
           id:    user.id,
