@@ -43,7 +43,7 @@ module OAuth
       grant.user_id = current_user.id
 
       if grant.valid? && grant.save
-        redirect_to redirect_uri, 302, query_params
+        redirect_to redirect_uri, params: query_params
       else
         error :server_error
       end

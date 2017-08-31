@@ -1,5 +1,7 @@
-class ApplicationController < Amber::Controller::Base
-  LAYOUT = "application.slang"
+require "jasper_helpers"
 
+class ApplicationController < Amber::Controller::Base
+  include JasperHelpers
   include ApplicationHelper
+  LAYOUT = "application.slang"
 end

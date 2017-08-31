@@ -1,11 +1,19 @@
+# Crystal
 /doc/
 /libs/
 /lib/
 /.crystal/
 /.shards/
 .env
+
+# Vim
 [._]*.s[a-v][a-z]
 [._]*.sw[a-p]
 [._]s[a-v][a-z]
 [._]sw[a-p]
-pineauth
+
+# Node
+/node_modules
+
+# Pineauth
+/pineauth

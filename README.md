@@ -6,34 +6,38 @@ OAuth 2 Provider built with [Amber](https://github.com/amber-crystal/amber)
 
 ## Installation
 
-Create a pg database called `demo` and configure the `config/database.yml`
-to provide the credentials to access the table.
+Create a pg database called `pineauth_development` and configure the
+`config/database.yml` to provide the credentials to access the table.
 
 Then:
-```
-shards update
-amber migrate up
+
+```shellsession
+$ shards update
+$ amber migrate up
 ```
 
 ## Usage
 
 To run the demo:
-```
-crystal build src/pineauth.cr
-./pineauth
+
+```shellsession
+$ crystal build src/pineauth.cr
+$ ./pineauth
 ```
 
-## Docker and Docker Compose
+## Docker Compose
 
-This will start an instance of postgres, migrate the database, run the specs,
+This will start an instance of postgres, migrate the database,
 and launch the site at http://localhost:3000
-```
-docker-compose up -d
+
+```shellsession
+$ docker-compose up -d
 ```
 
 To view the logs:
-```
-docker-compose logs -f
+
+```shellsession
+$ docker-compose logs -f
 ```
 
 Note: The Docker images are compatible with Heroku.

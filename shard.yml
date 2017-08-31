@@ -8,18 +8,29 @@ crystal: 0.23.1
 
 license: MIT
 
-dependencies:
-  amber:
-    github: amber-crystal/amber 
+targets:
+  pineauth:
+    main: src/pineauth.cr
 
+  amber:
+    main: lib/amber/src/amber/cli.cr
+
+development_dependencies:
   amber_spec:
     github: amber-crystal/amber-spec
+
+dependencies:
+  amber:
+    github: amber-crystal/amber
 
   quartz-mailer:
     github: amber-crystal/quartz-mailer
 
   granite_orm:
     github: amber-crystal/granite-orm
+
+  jasper_helpers:
+    github: amber-crystal/jasper-helpers
 
   pg:
     github: will/crystal-pg

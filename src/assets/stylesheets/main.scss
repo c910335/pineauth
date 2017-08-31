@@ -1,8 +1,12 @@
+$font-stack: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$background-color: #f4994b;
+$nav-item-color: #ffe4cd;
+
 /*
  * Globals
  */
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: $font-stack;
   color: #555;
 }
 
@@ -13,7 +17,7 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
   margin-top: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-stack;
   font-weight: normal;
   color: #333;
 }
@@ -31,7 +35,7 @@ h6, .h6 {
  * Masthead for nav
  */
 .masthead {
-  background-color: #f4994b;
+  background-color: $background-color;
   -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
 }
@@ -42,7 +46,7 @@ h6, .h6 {
   display: inline-block;
   padding: 10px;
   font-weight: 500;
-  color: #ffe4cd;
+  color: $nav-item-color;
 }
 .nav-item:hover,
 .nav-item:focus {
