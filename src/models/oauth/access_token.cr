@@ -19,6 +19,16 @@ module OAuth
 
     property! user : User
 
+    @client : Client?
+
+    def client?
+      @client ||= Client.find(client_id)
+    end
+
+    def client
+      client?.not_nil!
+    end
+
     def accessible?
       if revoked_at
         false
@@ -52,7 +62,7 @@ module OAuth
         scopes:     split_scopes,
         expires_in: expires_in.not_nil! - (Time.now - created_at.not_nil!).total_seconds,
         client:     {
-          id: client_id,
+          id: client.uid,
         },
         created_at: created_at.not_nil!,
       }.to_json
