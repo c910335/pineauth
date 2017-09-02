@@ -22,9 +22,9 @@ module OAuth
 
     def destroy
       return error if error?
-      if (grants = Grant.all("WHERE client_id = $1 and user_id = $2", [params["id"], current_user.id])) && !grants.empty?
+      if (grants = Grant.where("client_id =": params["id"], "user_id =": current_user.id)) && !grants.empty?
         grants.each &.destroy
-        if tokens = AccessToken.all("WHERE client_id = $1 and user_id = $2 and revoked_at IS NULL", [params["id"], current_user.id])
+        if tokens = AccessToken.where("client_id =": params["id"], "user_id =": current_user.id, "revoked_at IS": nil)
           tokens.each &.revoke
         end
       else

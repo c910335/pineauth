@@ -1,5 +1,6 @@
 require "amber"
-require "../config/*"
+require "granite_orm"
+require "../config/**"
 require "./models/**"
 require "./mailers/**"
 require "./helpers/**"
