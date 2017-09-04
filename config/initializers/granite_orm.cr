@@ -7,11 +7,11 @@ class Granite::ORM
       s << conditions.map do |k, v|
         if v
           params << v
-          "#{k} $#{i += 1}"
+          "#{k} = $#{i += 1}"
         else
-          "#{k} NULL"
+          "#{k} IS NULL"
         end
-      end.join(" and ")
+      end.join(" AND ")
     end
     all(clause, params)
   end
@@ -24,11 +24,11 @@ class Granite::ORM
       s << conditions.map do |k, v|
         if v
           params << v
-          "#{k} $#{i += 1}"
+          "#{k} = $#{i += 1}"
         else
-          "#{k} NULL"
+          "#{k} IS NULL"
         end
-      end.join(" and ")
+      end.join(" AND ")
       s << " LIMIT 1"
     end
     all(clause, params).first
