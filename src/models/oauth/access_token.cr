@@ -17,17 +17,8 @@ module OAuth
     field revoked_at : Time
     timestamps
 
-    property! user : User
-
-    @client : Client?
-
-    def client?
-      @client ||= Client.find(client_id)
-    end
-
-    def client
-      client?.not_nil!
-    end
+    belongs_to user
+    belongs_to client
 
     def accessible?
       if revoked_at
@@ -35,7 +26,7 @@ module OAuth
       elsif created_at.not_nil! + expires_in.not_nil!.seconds < Time.now
         revoke
         false
-      elsif @user = User.find user_id
+      elsif user?
         true
       else
         false

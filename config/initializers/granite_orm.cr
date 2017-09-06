@@ -1,4 +1,17 @@
 class Granite::ORM
+
+  macro belongs_to(name)
+    @{{name.id}} : {{name.id.capitalize}}?
+
+    def {{name.id}}?
+      @{{name.id}} ||= {{name.id.capitalize}}.find({{name.id}}_id)
+    end
+
+    def {{name.id}}
+      {{name.id}}?.not_nil!
+    end
+  end
+
   def self.where(**conditions)
     params = [] of DB::Any
     clause = String.build do |s|

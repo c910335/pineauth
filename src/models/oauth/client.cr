@@ -15,6 +15,8 @@ module OAuth
     field user_id : Int64
     timestamps
 
+    belongs_to user
+
     def split_scopes
       if scopes = @scopes
         scopes.split
