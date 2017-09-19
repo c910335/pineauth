@@ -1,7 +1,7 @@
 require "granite_orm/adapter/pg"
 
 module OAuth
-  class Client < Granite::ORM
+  class Client < Granite::ORM::Base
     adapter pg
 
     before_create generate_id_and_secret
@@ -12,10 +12,9 @@ module OAuth
     field secret : String
     field redirect_uri : String
     field scopes : String
-    field user_id : Int64
     timestamps
 
-    belongs_to user
+    belongs_to! user
 
     def split_scopes
       if scopes = @scopes

@@ -1,11 +1,6 @@
-AMBER_ENV = ARGV[0]? || ENV["AMBER_ENV"]? || "development"
-
-Amber::Server.instance.config do |app|
-  # Server options
-  app_path = __FILE__ # Do not change unless you understand what you are doing.
-  app.name = "Pineauth web application."
-  app.port = (ENV["PORT"] ||= "3000").to_i # Port you wish your app to run
-  app.env = (ENV["AMBER_ENV"] ||= "development").to_s
-  app.log = ::Logger.new(STDOUT)
-  app.log.level = ::Logger::INFO
+Amber::Server.configure do |setting|
+  # setting.name = "Pineauth web application."
+  # setting.port = (ENV["PORT"] ||= "3000").to_i # Port you wish your app to run
+  # setting.log = ::Logger.new(STDOUT)
+  # setting.log.level = ::Logger::INFO
 end

@@ -1,0 +1,16 @@
+secret_key_base: 9cbdQbhDhmnKz_e0AB7I3zCYuQ03ry0ZDq4j1zt5rEw
+port: 3000
+name: Pineauth
+log: "::Logger.new(STDOUT)"
+log_level: "::Logger::INFO"
+host: 0.0.0.0
+ssl_key_file:
+ssl_cert_file:
+redis_url: "redis://localhost:6379"
+session:
+  key: amber.session
+  store: :signed_cookie
+  expires: 0
+secrets:
+  description: Store your development secrets credentials and settings here.
+  database: postgres://pineauth:@localhost:5432/pineauth

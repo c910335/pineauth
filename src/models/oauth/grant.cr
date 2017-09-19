@@ -1,7 +1,7 @@
 require "granite_orm/adapter/pg"
 
 module OAuth
-  class Grant < Granite::ORM
+  class Grant < Granite::ORM::Base
     adapter pg
 
     before_create generate
@@ -11,12 +11,10 @@ module OAuth
     field revoked_at : Time
     field scopes : String
     field expires_in : Int32
-    field user_id : Int64
-    field client_id : Int64
     timestamps
 
-    belongs_to user
-    belongs_to client
+    belongs_to! user
+    belongs_to! client
 
     def split_scopes
       if scopes = @scopes

@@ -1,6 +1,6 @@
-class Granite::ORM
-
-  macro belongs_to(name)
+class Granite::ORM::Base
+  macro belongs_to!(name)
+    field {{name.id}}_id : Int64
     @{{name.id}} : {{name.id.capitalize}}?
 
     def {{name.id}}?
@@ -9,6 +9,12 @@ class Granite::ORM
 
     def {{name.id}}
       {{name.id}}?.not_nil!
+    end
+
+    def {{name.id}}=(parent)
+      @{{name.id}}_id = parent.id
+      @{{name.id}} = nil
+      parent
     end
   end
 

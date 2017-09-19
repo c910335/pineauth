@@ -1,7 +1,7 @@
 require "granite_orm/adapter/pg"
 
 module OAuth
-  class AccessToken < Granite::ORM
+  class AccessToken < Granite::ORM::Base
     adapter pg
     table_name oauth_access_tokens
 
@@ -12,13 +12,11 @@ module OAuth
     field refresh_token : String
     field expires_in : Int32
     field scopes : String
-    field user_id : Int64
-    field client_id : Int64
     field revoked_at : Time
     timestamps
 
-    belongs_to user
-    belongs_to client
+    belongs_to! user
+    belongs_to! client
 
     def accessible?
       if revoked_at

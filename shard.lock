@@ -2,11 +2,11 @@ version: 1.0
 shards:
   amber:
     github: amber-crystal/amber
-    version: 0.2.1
+    version: 0.2.6
 
   amber_spec:
     github: amber-crystal/amber-spec
-    version: 0.1.0
+    version: 0.1.1
 
   callback:
     github: mosop/callback
@@ -22,7 +22,7 @@ shards:
 
   granite_orm:
     github: amber-crystal/granite-orm
-    version: 0.6.4
+    version: 0.7.3
 
   icr:
     github: TechMagister/crystal-icr
@@ -30,11 +30,7 @@ shards:
 
   jasper_helpers:
     github: amber-crystal/jasper-helpers
-    version: 0.1.4
-
-  kemalyst-validators:
-    github: kemalyst/kemalyst-validators
-    version: 0.2.0
+    version: 0.1.5
 
   kilt:
     github: jeromegn/kilt
