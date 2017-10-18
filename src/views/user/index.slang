@@ -18,5 +18,7 @@ div.table-responsive
         td
           span
             a.btn.btn-primary.btn-xs href="/users/#{ user.id }" read
-            a.btn.btn-danger.btn-xs href="/users/#{ user.id }?_method=delete" onclick="return confirm('Are you sure?');" delete
-
+            form.inline-form action="/users/#{ user.id }" method="post"
+              input type="hidden" name="_method" value="delete"
+              == csrf_tag
+              button.btn.btn-danger.btn-xs type="submit" onclick="return confirm('Are you sure?');" delete

@@ -2,6 +2,7 @@ Amber::Server.configure do |app|
   pipeline :web do
     # Plug is the method to use connect a pipe (middleware)
     # A plug accepts an instance of HTTP::Handler
+    plug Amber::Pipe::Error.new
     plug Amber::Pipe::Logger.new
     plug Amber::Pipe::Session.new
     plug Amber::Pipe::Flash.new
@@ -9,11 +10,13 @@ Amber::Server.configure do |app|
   end
 
   pipeline :api do
+    plug Amber::Pipe::Error.new
     plug Amber::Pipe::Logger.new
   end
 
   # All static content will run these transformations
   pipeline :static do
+    plug Amber::Pipe::Error.new
     plug HTTP::StaticFileHandler.new("./public")
     plug HTTP::CompressHandler.new
   end
@@ -26,8 +29,8 @@ Amber::Server.configure do |app|
 
   routes :web do
     resources "/users", UserController
-    resources "/oauth/clients", OAuth::ClientController
     resources "/oauth/authorized_applications", OAuth::AuthorizedApplicationController, only: [:index, :show, :destroy]
+    resources "/oauth/clients", OAuth::ClientController
     get "/oauth/authorize", OAuth::AuthorizationController, :new
     post "/oauth/authorize", OAuth::AuthorizationController, :create
     delete "/oauth/authorize", OAuth::AuthorizationController, :destroy

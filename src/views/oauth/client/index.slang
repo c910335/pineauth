@@ -25,5 +25,7 @@ div.table-responsive
           span
             a.btn.btn-primary.btn-xs href="/oauth/clients/#{ client.id }" read
             a.btn.btn-success.btn-xs href="/oauth/clients/#{ client.id }/edit" edit
-            a.btn.btn-danger.btn-xs href="/oauth/clients/#{ client.id }?_method=delete" onclick="return confirm('Are you sure?');" delete
-
+            form.inline-form action="/oauth/clients/#{ client.id }" method="post"
+              input type="hidden" name="_method" value="delete"
+              == csrf_tag
+              button.btn.btn-danger.btn-xs type="submit" onclick="return confirm('Are you sure?');" delete

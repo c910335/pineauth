@@ -1,11 +1,11 @@
 version: 1.0
 shards:
   amber:
-    github: amber-crystal/amber
-    version: 0.2.6
+    github: amberframework/amber
+    version: 0.3.0
 
   amber_spec:
-    github: amber-crystal/amber-spec
+    github: amberframework/amber-spec
     version: 0.1.1
 
   callback:
@@ -21,15 +21,15 @@ shards:
     version: 0.4.2
 
   granite_orm:
-    github: amber-crystal/granite-orm
-    version: 0.7.3
+    github: amberframework/granite-orm
+    version: 0.7.4
 
   icr:
     github: TechMagister/crystal-icr
     commit: b28bb938cc9e9e439424217c074a9168d253ba4b
 
   jasper_helpers:
-    github: amber-crystal/jasper-helpers
+    github: amberframework/jasper-helpers
     version: 0.1.5
 
   kilt:
@@ -50,15 +50,15 @@ shards:
 
   pg:
     github: will/crystal-pg
-    version: 0.13.3
+    version: 0.13.4
 
-  quartz-mailer:
-    github: amber-crystal/quartz-mailer
-    version: 0.1.0
+  quartz_mailer:
+    github: amberframework/quartz-mailer
+    version: 0.2.0
 
   radix:
     github: luislavena/radix
-    commit: 211418416adba540b594af2260e1b5d0c8877c9e
+    commit: 905bd9e14b9996c793ac95e1e77d2809f7f79568
 
   redis:
     github: stefanwille/crystal-redis
@@ -70,7 +70,7 @@ shards:
 
   shell-table:
     github: jwaldrip/shell-table.cr
-    version: 0.9.1
+    version: 0.9.2
 
   slang:
     github: jeromegn/slang
@@ -81,7 +81,7 @@ shards:
     commit: 36854c38435ce104914cb6f44e08c23d8defd143
 
   spinner:
-    github: elorest/spinner
+    github: askn/spinner
     version: 0.1.1
 
   sqlite3:
