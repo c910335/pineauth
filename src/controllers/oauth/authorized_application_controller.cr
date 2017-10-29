@@ -6,13 +6,13 @@ module OAuth
 
     def index
       return error if error?
-      clients = Client.all("INNER JOIN oauth_grants ON oauth_grants.client_id = oauth_clients.id WHERE oauth_grants.user_id = $1 GROUP BY oauth_clients.id", [current_user.id])
+      authorized_applications = AuthorizedApplication.where(user_id: current_user.id, includes: :client)
       render("src/views/oauth/authorized_application/index.slang")
     end
 
     def show
       return error if error?
-      if client = Client.all("INNER JOIN oauth_grants ON oauth_grants.client_id = oauth_clients.id WHERE oauth_clients.id = $1 and oauth_grants.user_id = $2", [params["id"], current_user.id]).first
+      if authorized_application = AuthorizedApplication.find_by(user_id: current_user.id, id: params["id"])
         render("src/views/oauth/authorized_application/show.slang")
       else
         flash["warning"] = "Authorized Application with ID #{params["id"]} Not Found"
@@ -22,11 +22,8 @@ module OAuth
 
     def destroy
       return error if error?
-      if (grants = Grant.where(client_id: params["id"], user_id: current_user.id)) && !grants.empty?
-        grants.each &.destroy
-        if tokens = AccessToken.where(client_id: params["id"], user_id: current_user.id, revoked_at: nil)
-          tokens.each &.revoke
-        end
+      if authorized_application = AuthorizedApplication.find_by(user_id: current_user.id, id: params["id"])
+        authorized_application.destroy
       else
         flash["warning"] = "Authorized Application with ID #{params["id"]} Not Found"
       end

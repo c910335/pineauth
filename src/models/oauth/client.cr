@@ -15,6 +15,7 @@ module OAuth
     timestamps
 
     belongs_to! user
+    has_many! authorized_applications, id: client_id
 
     def split_scopes
       if scopes = @scopes
