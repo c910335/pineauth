@@ -2,7 +2,7 @@
 
 [![Amber Framework](https://img.shields.io/badge/using-amber%20framework-orange.svg)](https://github.com/c910335/pineauth)
 
-OAuth 2 Provider built with [Amber](https://github.com/amber-crystal/amber)
+OAuth 2 Provider built with [Amber](https://github.com/amberframework/amber)
 
 ## Installation
 
