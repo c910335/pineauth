@@ -3,7 +3,7 @@ h1 Edit User
 - if user.errors
   ul.errors
   - user.errors.each do |error|
-    li = error
+    li = error.to_s
 
 - action = (user.id ? "/users/" + user.id.to_s : "/users")
 form action="/users/#{ user.id }" method="post"

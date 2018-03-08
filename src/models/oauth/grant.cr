@@ -44,7 +44,7 @@ module OAuth
     end
 
     private def generate
-      @code = SecureRandom.urlsafe_base64(32)
+      @code = Random::Secure.urlsafe_base64(32)
       @expires_in = 60
     end
 

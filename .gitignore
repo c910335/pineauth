@@ -1,3 +1,6 @@
+# macOS
+.DS_Store
+
 # Crystal
 /doc/
 /libs/
@@ -14,6 +17,11 @@
 
 # Node
 /node_modules
+
+# Amber
+/bin
+.encryption_key
+production.yml
 
 # Pineauth
 /pineauth

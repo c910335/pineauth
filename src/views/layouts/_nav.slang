@@ -20,7 +20,7 @@ ul.nav.navbar-nav.navbar-right
         li
           a href="/users/#{ current_user.id }/edit" Change password
         li
-          form action="/sign_out" method="post"
+          form#sign_out action="/sign_out" method="post"
             == csrf_tag
             input type="hidden" name="_method" value="delete"
             button.btn-dm type="submit" Sign out

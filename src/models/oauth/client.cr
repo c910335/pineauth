@@ -3,6 +3,7 @@ require "granite_orm/adapter/pg"
 module OAuth
   class Client < Granite::ORM::Base
     adapter pg
+    table_name oauth_clients
 
     before_create generate_id_and_secret
 
@@ -26,8 +27,8 @@ module OAuth
     end
 
     private def generate_id_and_secret
-      @uid = SecureRandom.urlsafe_base64(32)
-      @secret = SecureRandom.urlsafe_base64(32)
+      @uid = Random::Secure.urlsafe_base64(32)
+      @secret = Random::Secure.urlsafe_base64(32)
     end
 
     def self.authenticate(uid, secret)

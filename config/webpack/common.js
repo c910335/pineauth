@@ -46,7 +46,7 @@ let config = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         exclude: /node_modules/,
         use: [
-          'file-loader'
+          'file-loader?name=/[name].[ext]'
         ]
       },
       {
@@ -54,14 +54,16 @@ let config = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015']
+          presets: ['env']
         }
       }
     ]
   },
   plugins: [
     new ExtractTextPlugin('main.bundle.css'),
-  ]
+  ],
+  // For more info about webpack logs see: https://webpack.js.org/configuration/stats/
+  stats: 'errors-only'
 };
 
 module.exports = config;

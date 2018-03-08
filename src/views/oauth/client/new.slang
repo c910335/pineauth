@@ -3,7 +3,7 @@ h1 New Client
 - if client.errors
   ul.errors
   - client.errors.each do |error|
-    li = error
+    li = error.to_s
 
 form action="/oauth/clients" method="post"
   == csrf_tag
@@ -12,7 +12,7 @@ form action="/oauth/clients" method="post"
     input#name.form-control type="text" name="name" placeholder="Name" value="#{ client.name }"
   div.form-group
     label for="redirect_uri" Redirect Uri
-    textarea#redirect_uri.form-control rows="10" name="redirect_uri" placeholder="Redirect Uri" =  client.redirect_uri
+    textarea#redirect_uri.form-control rows="10" name="redirect_uri" placeholder="Redirect Uri" = client.redirect_uri
   div.form-group
     label for="scopes" Scopes
     input#scopes.form-control type="text" name="scopes" placeholder="Scopes" value="#{ client.scopes }"

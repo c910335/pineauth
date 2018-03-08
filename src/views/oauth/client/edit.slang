@@ -3,7 +3,7 @@ h1 Edit Client
 - if client.errors
   ul.errors
   - client.errors.each do |error|
-    li = error
+    li = error.to_s
 
 form action="/oauth/clients/#{ client.id.to_s }" method="post"
   == csrf_tag

@@ -2,9 +2,9 @@ name: pineauth
 version: 0.1.0
 
 authors:
-  - Amber <contact@ambercr.io>
+  - Tatsiujin Chin <c910335@gmail.com>
 
-crystal: 0.23.1
+crystal: 0.24.1
 
 license: MIT
 
@@ -15,29 +15,28 @@ targets:
   amber:
     main: lib/amber/src/amber/cli.cr
 
-development_dependencies:
-  amber_spec:
-    github: amberframework/amber-spec
-
 dependencies:
   amber:
     github: amberframework/amber
-
-  quartz_mailer:
-    github: amberframework/quartz-mailer
+    branch: master
 
   granite_orm:
     github: amberframework/granite-orm
+    version: ~> 0.8.2
+
+  quartz_mailer:
+    github: amberframework/quartz-mailer
+    version: ~> 0.5.0
 
   jasper_helpers:
     github: amberframework/jasper-helpers
+    version: ~> 0.1.6
 
   pg:
     github: will/crystal-pg
+    version: ~> 0.14.1
 
-#  mysql:
-#    github: crystal-lang/crystal-mysql
-#  pg:
-#    github: will/crystal-pg
-#  sqlite3:
-#    github: crystal-lang/crystal-sqlite3
+development_dependencies:
+  garnet_spec:
+    github: amberframework/garnet-spec
+    version: ~> 0.1.1

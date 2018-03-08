@@ -3,7 +3,7 @@ h1 New User
 - if user.errors
   ul.errors
   - user.errors.each do |error|
-    li = error
+    li = error.to_s
 
 form action="/users" method="post"
   == csrf_tag

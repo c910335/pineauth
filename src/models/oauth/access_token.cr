@@ -73,7 +73,7 @@ module OAuth
     end
 
     private def generate_tokens
-      @token = SecureRandom.urlsafe_base64(32)
+      @token = Random::Secure.urlsafe_base64(32)
       @expires_in = 7200
     end
   end
