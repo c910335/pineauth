@@ -3,6 +3,7 @@ require "granite_orm/adapter/pg"
 module OAuth
   class Grant < Granite::ORM::Base
     adapter pg
+    table_name oauth_grants
 
     before_create generate
     after_create sync
