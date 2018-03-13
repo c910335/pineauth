@@ -4,6 +4,7 @@ module OAuth
       all do
         response.content_type = "application/json"
         set_properties
+        halt!(400, error) if error?
       end
     end
 
@@ -14,7 +15,6 @@ module OAuth
     getter basic_auth_pass : String?
 
     def create
-      return error if error?
       case grant_type
       when "authorization_code"
         respond_token

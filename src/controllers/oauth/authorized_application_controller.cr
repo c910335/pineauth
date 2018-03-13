@@ -5,13 +5,11 @@ module OAuth
     end
 
     def index
-      return error if error?
       authorized_applications = AuthorizedApplication.where(user_id: current_user.id, includes: :client)
       render("src/views/oauth/authorized_application/index.slang")
     end
 
     def show
-      return error if error?
       if authorized_application = AuthorizedApplication.find_by(user_id: current_user.id, id: params["id"])
         render("src/views/oauth/authorized_application/show.slang")
       else
@@ -21,7 +19,6 @@ module OAuth
     end
 
     def destroy
-      return error if error?
       if authorized_application = AuthorizedApplication.find_by(user_id: current_user.id, id: params["id"])
         authorized_application.destroy
       else

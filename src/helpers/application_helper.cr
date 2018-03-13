@@ -1,7 +1,4 @@
-require "./error_helper"
-
 module ApplicationHelper
-  include ErrorHelper
 
   @current_user : User?
 

@@ -10,13 +10,11 @@ class UserController < ApplicationController
   end
 
   def index
-    return error if error?
     users = User.all
     render("index.slang")
   end
 
   def show
-    return error if error?
     if user = User.find params["id"]
       render("show.slang")
     else
@@ -26,13 +24,11 @@ class UserController < ApplicationController
   end
 
   def new
-    return error if error?
     user = User.new
     render("new.slang")
   end
 
   def create
-    return error if error?
     user = User.new(params.to_h.select("email", "level"))
     user.password = params["password"]
 
@@ -46,7 +42,6 @@ class UserController < ApplicationController
   end
 
   def edit
-    return error if error?
     if user = User.find params["id"]
       render("edit.slang")
     else
@@ -56,7 +51,6 @@ class UserController < ApplicationController
   end
 
   def update
-    return error if error?
     if user = User.find(params["id"])
       old_password, user.password = user.password, params["password"]
       if old_password == params["old_password"] && params["password"] == params["confirm_password"] && user.valid? && user.save
@@ -73,7 +67,6 @@ class UserController < ApplicationController
   end
 
   def destroy
-    return error if error?
     if user = User.find params["id"]
       user.destroy
     else

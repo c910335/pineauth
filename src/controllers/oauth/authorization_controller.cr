@@ -3,7 +3,11 @@ module OAuth
     LAYOUT = "authorization.slang"
 
     before_action do
-      all { authenticate_user_and_return_back! && set_properties }
+      all do
+        authenticate_user_and_return_back!
+        set_properties
+        halt!(400, error) if error?
+      end
     end
 
     property! client : Client
@@ -16,12 +20,10 @@ module OAuth
     property! error : String
 
     def new
-      return error if error?
       render("src/views/oauth/authorization/new.slang")
     end
 
     def create
-      return error if error?
       case response_type
       when "code"
         respond_code
