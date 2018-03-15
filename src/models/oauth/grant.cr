@@ -1,5 +1,3 @@
-require "granite_orm/adapter/pg"
-
 module OAuth
   class Grant < Granite::ORM::Base
     adapter pg

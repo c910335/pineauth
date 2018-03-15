@@ -1,5 +1,3 @@
-require "granite_orm/adapter/pg"
-
 module OAuth
   class AccessToken < Granite::ORM::Base
     adapter pg
@@ -29,32 +27,6 @@ module OAuth
       else
         false
       end
-    end
-
-    def to_json(json : JSON::Builder)
-      hash = {
-        :access_token => token,
-        :token_type   => "Bearer",
-        :expires_in   => expires_in.not_nil! - (Time.now - created_at.not_nil!).total_seconds,
-        :scope        => scopes,
-      }
-      hash[:refresh_token] = refresh_token if refresh_token
-      hash.to_json(json)
-    end
-
-    def to_info_json
-      {
-        user: {
-          id:    user.id,
-          email: user.email,
-        },
-        scopes:     split_scopes,
-        expires_in: expires_in.not_nil! - (Time.now - created_at.not_nil!).total_seconds,
-        client:     {
-          id: client.uid,
-        },
-        created_at: created_at.not_nil!,
-      }.to_json
     end
 
     def split_scopes

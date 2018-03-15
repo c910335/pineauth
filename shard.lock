@@ -2,11 +2,7 @@ version: 1.0
 shards:
   amber:
     github: amberframework/amber
-    commit: f4e10fc32268f312dfc13d8e9b72bbf5d1c93fa8
-
-  amber_router:
-    github: amberframework/router
-    version: 0.0.3
+    version: 0.6.7
 
   callback:
     github: mosop/callback
@@ -16,13 +12,9 @@ shards:
     github: amberframework/cli
     version: 0.7.0
 
-  compiled_license:
-    github: elorest/compiled_license
+  crinder:
+    github: c910335/crinder
     version: 0.1.2
-
-  cry:
-    github: elorest/cry
-    version: 0.3.0
 
   db:
     github: crystal-lang/crystal-db
@@ -49,7 +41,7 @@ shards:
     version: 0.4.0
 
   micrate:
-    github: amberframework/micrate
+    github: juanedi/micrate
     version: 0.3.0
 
   mysql:
@@ -67,6 +59,10 @@ shards:
   quartz_mailer:
     github: amberframework/quartz-mailer
     version: 0.5.1
+
+  radix:
+    github: luislavena/radix
+    version: 0.3.8
 
   redis:
     github: stefanwille/crystal-redis

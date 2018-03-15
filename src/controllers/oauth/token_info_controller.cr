@@ -7,11 +7,11 @@ module OAuth
       end
     end
 
-    property! token : OAuth::AccessToken
+    property! token : AccessToken
 
     def show
       if token? && token.accessible?
-        token.to_info_json
+        AccessTokenInfoRenderer.render token
       else
         error :invalid_request
       end

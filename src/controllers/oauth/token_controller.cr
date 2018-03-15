@@ -33,7 +33,7 @@ module OAuth
 
       if token.valid? && token.save
         grant.revoke
-        token.to_json
+        AccessTokenRenderer.render token
       else
         error :server_error
       end

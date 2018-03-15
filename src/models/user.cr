@@ -1,4 +1,3 @@
-require "granite_orm/adapter/pg"
 require "crypto/bcrypt/password"
 
 class User < Granite::ORM::Base
