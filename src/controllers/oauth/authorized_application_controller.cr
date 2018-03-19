@@ -5,7 +5,7 @@ module OAuth
     end
 
     def index
-      authorized_applications = AuthorizedApplication.where(user_id: current_user.id, includes: :client)
+      authorized_applications = AuthorizedApplication.where(user_id: current_user.id, includes: :clients)
       render("src/views/oauth/authorized_application/index.slang")
     end
 
