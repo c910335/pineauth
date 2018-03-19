@@ -2,7 +2,7 @@
 .DS_Store
 
 # Crystal
-/doc/
+/docs/
 /libs/
 /lib/
 /.crystal/

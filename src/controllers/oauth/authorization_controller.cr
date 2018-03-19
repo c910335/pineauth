@@ -16,7 +16,6 @@ module OAuth
     property! scopes_string : String
     property! scopes : Array(String)
     property! state : String
-    property! grant : Grant
     property! error : String
 
     def new
@@ -40,29 +39,45 @@ module OAuth
     end
 
     def respond_code
-      @grant = Grant.new(scopes: scopes_string)
+      grant = Grant.new(scopes: scopes_string)
       grant.client_id = client.id
       grant.user_id = current_user.id
 
       if grant.valid? && grant.save
-        redirect_to redirect_uri, params: query_params
+        redirect_to redirect_uri, params: code_query_params(grant)
       else
         error :server_error
       end
     end
 
     def respond_token
-      response.status_code = 501
-      "Not Implemented"
+      token = AccessToken.new
+      token.scopes = scopes_string
+      token.client_id = client.id
+      token.user_id = current_user.id
+
+      if token.valid? && token.save
+        redirect_to redirect_uri + "#" + token_fragment(token)
+      else
+        error :server_error
+      end
     end
 
-    private def query_params
+    private def code_query_params(grant)
       qp = {} of String => String
-      qp["code"] = grant.code.not_nil!
-      if state?
-        qp["state"] = state
-      end
+      qp["code"] = grant.code.to_s
+      qp["state"] = state if state?
       qp
+    end
+
+    private def token_fragment(token)
+      f = {
+        "access_token" => token.token.to_s,
+        "expires_in" => token.expires_in.to_s,
+        "scope" =>  token.scopes.to_s
+      }
+      f["state"] = state.to_s if state?
+      HTTP::Params.encode(f)
     end
 
     private def set_properties
