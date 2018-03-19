@@ -73,8 +73,8 @@ module OAuth
     private def token_fragment(token)
       f = {
         "access_token" => token.token.to_s,
-        "expires_in" => token.expires_in.to_s,
-        "scope" =>  token.scopes.to_s
+        "expires_in"   => token.expires_in.to_s,
+        "scope"        => token.scopes.to_s,
       }
       f["state"] = state.to_s if state?
       HTTP::Params.encode(f)

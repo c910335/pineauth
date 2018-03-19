@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   @current_user : User?
 
   macro root_path
