@@ -23,6 +23,16 @@ module OAuth
       token
     end
 
+    def self.refresh(refresh_token, client)
+      if (token = find_by(refresh_token: refresh_token)) && token.client_id == client.id
+        token.refresh_token = nil
+        token.save
+        new_with_refresh_token(scopes: token.scopes, user_id: token.user_id, client_id: client.id)
+      else
+        nil
+      end
+    end
+
     def accessible?
       if revoked_at
         false
