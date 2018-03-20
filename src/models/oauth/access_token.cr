@@ -17,6 +17,12 @@ module OAuth
     belongs_to! user
     belongs_to! client
 
+    def self.new_with_refresh_token(**args)
+      token = new(**args)
+      token.refresh_token = Random::Secure.urlsafe_base64(32)
+      token
+    end
+
     def accessible?
       if revoked_at
         false

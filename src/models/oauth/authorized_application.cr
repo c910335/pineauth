@@ -23,7 +23,7 @@ module OAuth
 
     def clear_grants
       Grant.where(client_id: client_id, user_id: user_id).each &.destroy
-      AccessToken.where(client_id: client_id, user_id: user_id, revoked_at: nil).each &.revoke
+      AccessToken.where(client_id: client_id, user_id: user_id).each &.destroy
     end
   end
 end

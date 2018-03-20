@@ -26,10 +26,7 @@ module OAuth
     end
 
     private def respond_token
-      token = AccessToken.new
-      token.scopes = grant.scopes
-      token.user_id = grant.user_id
-      token.client_id = grant.client_id
+      token = AccessToken.new_with_refresh_token(scopes: grant.scopes, user_id: grant.user_id, client_id: grant.client_id)
 
       if token.valid? && token.save
         grant.revoke
