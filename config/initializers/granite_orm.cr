@@ -30,6 +30,7 @@ module Granite::ORM
       end
 
       @@includes_blocks[:{{name.id}}s] = -> (children : Array({{@type}})) {
+        return nil if children.empty?
         parents = {{klass}}.where(id: children.map(&.{{name.id}}_id))
         parents_map = Hash(Int64 | Nil, {{klass}}).new
         parents.each do |parent|
@@ -62,6 +63,7 @@ module Granite::ORM
       end
 
       @@includes_blocks[:{{name.id}}] = -> (parents : Array({{@type}})) {
+        return nil if parents.empty?
         children = {{klass}}.where({{parent_id}}: parents.map(&.id))
         parents_map = Hash(Int64 | Nil, {{@type}}).new
         parents.each do |parent|
