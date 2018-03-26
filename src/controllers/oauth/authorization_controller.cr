@@ -39,9 +39,7 @@ module OAuth
     end
 
     def respond_code
-      grant = Grant.new(scopes: scopes_string)
-      grant.client_id = client.id
-      grant.user_id = current_user.id
+      grant = Grant.new(scopes: scopes_string, client_id: client.id, user_id: current_user.id)
 
       if grant.valid? && grant.save
         redirect_to redirect_uri, params: code_query_params(grant)
@@ -51,10 +49,7 @@ module OAuth
     end
 
     def respond_token
-      token = AccessToken.new
-      token.scopes = scopes_string
-      token.client_id = client.id
-      token.user_id = current_user.id
+      token = AccessToken.new(scopes: scopes_string, client_id: client.id, user_id: current_user.id)
 
       if token.valid? && token.save
         redirect_to redirect_uri + "#" + token_fragment(token)
