@@ -1,4 +1,5 @@
 p = user.email
+p = user.name
 p = user.password
 p = user.level_name
 a.btn.btn-link href="/users" back

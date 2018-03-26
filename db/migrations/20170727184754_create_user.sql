@@ -2,6 +2,7 @@
 CREATE TABLE users (
   id BIGSERIAL PRIMARY KEY,
   email VARCHAR,
+  name VARCHAR,
   encrypted_password VARCHAR,
   level BIGINT,
   created_at TIMESTAMP,

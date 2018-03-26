@@ -8,12 +8,14 @@ div.table-responsive
     thead
       tr
         th Email
+        th Name
         th Level
         th Actions
     tbody
     - users.each do |user|
       tr
         td = user.email
+        td = user.name
         td = user.level_name
         td
           span

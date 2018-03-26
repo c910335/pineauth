@@ -11,6 +11,8 @@ form action="/users/#{ user.id }" method="post"
   input type="hidden" name="_method" value="patch"
   p
     == user.email
+  p
+    == user.name
   div.form-group
     label for="password" Password
     input#password.form-control type="password" name="old_password" placeholder="Password"

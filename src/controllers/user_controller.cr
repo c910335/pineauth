@@ -29,7 +29,7 @@ class UserController < ApplicationController
   end
 
   def create
-    user = User.new(params.to_h.select("email", "level"))
+    user = User.new(params.to_h.select("email", "name", "level"))
     user.password = params["password"]
 
     if params["password"] == params["confirm_password"] && user.valid? && user.save

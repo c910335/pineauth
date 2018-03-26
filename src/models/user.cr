@@ -5,6 +5,7 @@ class User < Granite::ORM::Base
 
   # id : Int64 primary key is created for you
   field email : String
+  field name : String
   field encrypted_password : String
   field level : Int64
   timestamps

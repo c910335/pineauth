@@ -11,10 +11,13 @@ form action="/users" method="post"
     label for="email" E-mail
     input#email.form-control type="email" name="email" placeholder="Email" value="#{ user.email }"
   div.form-group
+    label for="name" Name
+    input#email.form-control type="text" name="name" placeholder="Name" value="#{ user.name }"
+  div.form-group
     label for="password" Password
     input.form-control type="password" name="password" placeholder="Password"
-	div.form-group                                                                                                                  
-    label for="confirm-password" Confirm Password                                                                                 
+	div.form-group
+    label for="confirm-password" Confirm Password
     input#confirm-password.form-control type="password" name="confirm_password" placeholder="Confirm Password"
   div.form-group
     div.checkbox
